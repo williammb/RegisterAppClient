@@ -22,12 +22,10 @@ export class LoginComponent implements OnInit {
 
     this.Auth.getUserDetails(username, password).subscribe(data => {
       if (data.success) {
-        this.router.navigate(['admin']);
+        this.router.navigate(['dashboard']);
         this.Auth.setLoggedIn(true);
       } else {
         window.alert(data.message);
-        this.router.navigate(['admin']);
-        this.Auth.setLoggedIn(true);
       }
     });
     console.log(username, password);

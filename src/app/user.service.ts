@@ -3,7 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface MyData {
-  message: string;
+  email: string;
+  status: boolean;
+  quote: string;
+}
+
+interface QuoteStatus {
   success: boolean;
 }
 
@@ -22,15 +27,19 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getSomeData() {
-    return this.http.get<MyData>('/api/databese.php');
+  getData() {
+    return this.http.get<MyData>('/api/data');
+  }
+
+  updateQuote(value) {
+    return this.http.post<QuoteStatus>('/api/quote/', {value});
   }
 
   isLoggedIn(): Observable<IsLoggedIn> {
-    return this.http.get<IsLoggedIn>('/api/isloggedin.php');
+    return this.http.get<IsLoggedIn>('/api/isloggedin');
   }
 
   logout() {
-    return this.http.get<LogoutStatus>('/api/logout.php');
+    return this.http.get<LogoutStatus>('/api/logout');
   }
 }

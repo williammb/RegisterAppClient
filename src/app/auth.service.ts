@@ -8,6 +8,7 @@ interface UserDetails {
 
 interface RegisterResponse {
   success: boolean;
+  message: string;
 }
 
 @Injectable({
@@ -27,17 +28,17 @@ export class AuthService {
     return this.loggedInStatus;
   }
 
-  getUserDetails(username, password) {
+  getUserDetails(email, password) {
     // post these details to API server return user info if corrent
-    return this.http.post<UserDetails>('/api/auth.php', {
-      username,
+    return this.http.post<UserDetails>('/api/login', {
+      email,
       password
     });
   }
 
-  registerUser(username, password) {
+  registerUser(email, password) {
     return this.http.post<RegisterResponse>('/api/register', {
-      username,
+      email,
       password
     });
   }
