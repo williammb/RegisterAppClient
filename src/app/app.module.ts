@@ -11,6 +11,10 @@ import { UserService } from './user.service';
 import { LogoutComponent } from './logout/logout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
+import { HeaderComponent } from './header/header.component';
+import { StoreModule} from '@ngrx/store';
+
+import { reducers } from './store/reducers';
 
 @NgModule({
   declarations: [
@@ -19,11 +23,13 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     LogoutComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    StoreModule.forRoot(reducers, {}),
     AppRoutingModule
   ],
   providers: [AuthService, UserService, AuthGuard],

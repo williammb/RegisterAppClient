@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { ACTION_LOGOUT } from '../store/actions/appActions';
 
 @Component({
   selector: 'app-logout',
@@ -17,6 +18,9 @@ export class LogoutComponent implements OnInit {
       if (data.success) {
         this.router.navigate(['']);
         this.auth.setLoggedIn(false);
+        this.user.updateState({
+          action: ACTION_LOGOUT
+        });
       } else {
         window.alert('Some problem');
       }
